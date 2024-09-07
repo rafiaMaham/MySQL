@@ -316,3 +316,216 @@ mysql> select * from Salespeople;
 | 1005 | Fran    | London    | 0.26 |
 +------+---------+-----------+------+
 6 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| practice   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| customers          |
+| orders             |
+| salespeople        |
+| t1                 |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc salespeople;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| SNUM  | int          | YES  |     | NULL    |       |
+| SNAME | varchar(100) | YES  |     | NULL    |       |
+| CITY  | varchar(100) | YES  |     | NULL    |       |
+| COMM  | float        | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from t1;
++------+----------+------------+
+| c1   | c2       | c3         |
++------+----------+------------+
+|    1 | pradeep  | 2024-07-29 |
+|    2 | himanshu | 2024-01-14 |
+|    3 | kartheek | 2024-04-27 |
+|    4 | Deepti   | 2024-04-03 |
+|    5 | Nidhi    | 2024-09-05 |
+|    6 | rafia    | 2024-10-27 |
+|    7 | neha     | 2024-11-20 |
+|    8 | Arunpal  | NULL       |
+| NULL | suraj    | 2024-10-28 |
+|   18 | NULL     | 2024-09-23 |
++------+----------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from salespeople;
++------+---------+-----------+------+
+| SNUM | SNAME   | CITY      | COMM |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | AxelRod | New York  |  0.1 |
+| 1005 | Fran    | London    | 0.26 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> desc orders;
++-------+-------+------+-----+---------+-------+
+| Field | Type  | Null | Key | Default | Extra |
++-------+-------+------+-----+---------+-------+
+| ONUM  | int   | YES  |     | NULL    |       |
+| AMT   | float | YES  |     | NULL    |       |
+| ODATE | date  | YES  |     | NULL    |       |
+| CNUM  | int   | YES  |     | NULL    |       |
+| SNUM  | int   | YES  |     | NULL    |       |
++-------+-------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> selcet * from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selcet * from orders' at line 1
+mysql> select * from orders;
++------+--------+------------+------+------+
+| ONUM | AMT    | ODATE      | CNUM | SNUM |
++------+--------+------------+------+------+
+| 3001 |  18.69 | 1996-10-03 | 2008 | 1007 |
+| 3003 | 767.19 | 1996-10-03 | 2001 | 1001 |
+| 3002 | 767.19 | 1996-10-03 | 2001 | 1001 |
++------+--------+------------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3005, 5160.45, 1996-10-03, 2003, 1002);
+ERROR 1292 (22007): Incorrect date value: '1983' for column 'ODATE' at row 1
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3005, 5160.45, "1996-10-03", 2003, 1002);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3006, 1098.16, "1996-10-03", 2008, 1007);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3009, 1713.23, "1996-10-04", 2002, 1003);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3007, 75.75, "1996-10-04", 2002, 1003);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3008, 4723.00, "1996-10-05", 2006, 1001);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3010, 1309.95, "1996-10-06", 2004, 1002);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3011, 9891.88, "1996-10-96", 2006, 1001);
+ERROR 1292 (22007): Incorrect date value: '1996-10-96' for column 'ODATE' at row 1
+mysql> insert into orders (onum, amt, odate, cnum, snum) values (3011, 9891.88, "1996-10-06", 2006, 1001);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from orders;
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1996-10-03 | 2001 | 1001 |
+| 3002 |  767.19 | 1996-10-03 | 2001 | 1001 |
+| 3005 | 5160.45 | 1996-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1996-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1996-10-04 | 2002 | 1003 |
+| 3008 |    4723 | 1996-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1996-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1996-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from customers;
+Empty set (0.00 sec)
+
+mysql> desc customers;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| cnum   | int         | YES  |     | NULL    |       |
+| cname  | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| rating | int         | YES  |     | NULL    |       |
+| snum   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers;
+Empty set (0.00 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2001, "Hoffman", "London", 100, 1001);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2002, "Glovanni", "Rome", 200, 1003);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2003, "Liu", "San Jose", 200, 1002);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2004, "Grass", "Berlin", 300, 1002);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2006, "Clemens", "London", 100, 1001);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2008, "Cisneros", "San Jose", 300, 1007);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into customers (cnum, cname, city, rating, snum) values (2007, "Pereira", "Rome", 100, 1004);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from customers;
++------+----------+----------+--------+------+
+| cnum | cname    | city     | rating | snum |
++------+----------+----------+--------+------+
+| 2001 | Hoffman  | London   |    100 | 1001 |
+| 2002 | Glovanni | Rome     |    200 | 1003 |
+| 2003 | Liu      | San Jose |    200 | 1002 |
+| 2004 | Grass    | Berlin   |    300 | 1002 |
+| 2006 | Clemens  | London   |    100 | 1001 |
+| 2008 | Cisneros | San Jose |    300 | 1007 |
+| 2007 | Pereira  | Rome     |    100 | 1004 |
++------+----------+----------+--------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from orders;
++------+---------+------------+------+------+
+| ONUM | AMT     | ODATE      | CNUM | SNUM |
++------+---------+------------+------+------+
+| 3001 |   18.69 | 1996-10-03 | 2008 | 1007 |
+| 3003 |  767.19 | 1996-10-03 | 2001 | 1001 |
+| 3002 |  767.19 | 1996-10-03 | 2001 | 1001 |
+| 3005 | 5160.45 | 1996-10-03 | 2003 | 1002 |
+| 3006 | 1098.16 | 1996-10-03 | 2008 | 1007 |
+| 3009 | 1713.23 | 1996-10-04 | 2002 | 1003 |
+| 3007 |   75.75 | 1996-10-04 | 2002 | 1003 |
+| 3008 |    4723 | 1996-10-05 | 2006 | 1001 |
+| 3010 | 1309.95 | 1996-10-06 | 2004 | 1002 |
+| 3011 | 9891.88 | 1996-10-06 | 2006 | 1001 |
++------+---------+------------+------+------+
+10 rows in set (0.00 sec)
