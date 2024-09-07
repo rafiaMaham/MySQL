@@ -1,0 +1,318 @@
+Microsoft Windows [Version 10.0.22621.4037]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\rafia>mydql --version
+'mydql' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\rafia>mysql --version
+mysql  Ver 8.0.39 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+C:\Users\rafia>mysql -u root -p
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.39 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    ->
+    -> ^C
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.06 sec)
+
+mysql> create database practice;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| practice   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> create database besant;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> show databases();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()' at line 1
+mysql> use besant;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| besant     |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
+Empty set (0.06 sec)
+
+mysql> drop database besant;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> use practice;
+Database changed
+mysql> create table t1(c1 int, c2 varchar(100), c3 date);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc t1;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| c1    | int          | YES  |     | NULL    |       |
+| c2    | varchar(100) | YES  |     | NULL    |       |
+| c3    | date         | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> DsEC t1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DsEC t1' at line 1
+mysql> desc t1;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| c1    | int          | YES  |     | NULL    |       |
+| c2    | varchar(100) | YES  |     | NULL    |       |
+| c3    | date         | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DSec t1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DSec t1' at line 1
+mysql> DEsC t1;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| c1    | int          | YES  |     | NULL    |       |
+| c2    | varchar(100) | YES  |     | NULL    |       |
+| c3    | date         | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_practice |
++--------------------+
+| t1                 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into t1(c1,c2,c3) values(1, "pradeep", "2024-07-29");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into t1(c1,c2,c3) values(2, "himanshu", "2024-01-14");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1(c1,c2,c3) values(3, "kartheek", "2024-04-27");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1(c1,c2,c3) values(4, "Deepti", "2024-04-03");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1(c1,c2,c3) values(5, "Nidhi", "2024-09-05");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1(c1,c2,c3) values(6, "rafia", "2024-10-27");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1 values(7, "neha", "2024-11-20");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from t1;
++------+----------+------------+
+| c1   | c2       | c3         |
++------+----------+------------+
+|    1 | pradeep  | 2024-07-29 |
+|    2 | himanshu | 2024-01-14 |
+|    3 | kartheek | 2024-04-27 |
+|    4 | Deepti   | 2024-04-03 |
+|    5 | Nidhi    | 2024-09-05 |
+|    6 | rafia    | 2024-10-27 |
+|    7 | neha     | 2024-11-20 |
++------+----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into t1(c1,c2) values(8, "Arunpal");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from t1;
++------+----------+------------+
+| c1   | c2       | c3         |
++------+----------+------------+
+|    1 | pradeep  | 2024-07-29 |
+|    2 | himanshu | 2024-01-14 |
+|    3 | kartheek | 2024-04-27 |
+|    4 | Deepti   | 2024-04-03 |
+|    5 | Nidhi    | 2024-09-05 |
+|    6 | rafia    | 2024-10-27 |
+|    7 | neha     | 2024-11-20 |
+|    8 | Arunpal  | NULL       |
++------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> insert into t1(c2,c3) values("suraj", "2024-10-28");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into t1(c1,c3) values(18, "2024-09-23");
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from t1;
++------+----------+------------+
+| c1   | c2       | c3         |
++------+----------+------------+
+|    1 | pradeep  | 2024-07-29 |
+|    2 | himanshu | 2024-01-14 |
+|    3 | kartheek | 2024-04-27 |
+|    4 | Deepti   | 2024-04-03 |
+|    5 | Nidhi    | 2024-09-05 |
+|    6 | rafia    | 2024-10-27 |
+|    7 | neha     | 2024-11-20 |
+|    8 | Arunpal  | NULL       |
+| NULL | suraj    | 2024-10-28 |
+|   18 | NULL     | 2024-09-23 |
++------+----------+------------+
+10 rows in set (0.00 sec)
+
+mysql> create table customers;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table customers(cnum int, cname varchar(50), city varchar(50), rating int, snum int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc customers;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| cnum   | int         | YES  |     | NULL    |       |
+| cname  | varchar(50) | YES  |     | NULL    |       |
+| city   | varchar(50) | YES  |     | NULL    |       |
+| rating | int         | YES  |     | NULL    |       |
+| snum   | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers;
+Empty set (0.00 sec)
+
+mysql> create table Orders;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table Orders(ONUM int, AMT float, ODATE date, CNUM int, SNUM int);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into Orders values(3001, 18.69, 1996-10-03, 2008, 1007);
+ERROR 1292 (22007): Incorrect date value: '1983' for column 'ODATE' at row 1
+mysql> insert into Orders values(3001, 18.69, "1996-10-03", 2008, 1007);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Orders;
++------+-------+------------+------+------+
+| ONUM | AMT   | ODATE      | CNUM | SNUM |
++------+-------+------------+------+------+
+| 3001 | 18.69 | 1996-10-03 | 2008 | 1007 |
++------+-------+------------+------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into Orders values(3003, 767.19, "1996-10-03", 2001, 1001);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Orders values(3002, 767.19, "1996-10-03", 2001, 1001);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> show databases
+    -> ^C
+mysql> create table Salespeople(SNUM int, SNAME varchar (100), CITY varchar (100), COMM float);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into Salespeople(1001, "Peel", "London", .12);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1001, "Peel", "London", .12)' at line 1
+mysql> insert into Salespeople(1001, "Peel", "London", 0.12);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1001, "Peel", "London", 0.12)' at line 1
+mysql> insert into Salespeople values(1001, "Peel", "London", 0.12);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Salespeople values(1002, "Serres", "San Jose", 0.13);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Salespeople values(1004, "Motika", "London", 0.11);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Salespeople values(1007, "Rifkin", "Barcelona", 0.15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Salespeople values(1003, "AxelRod", "New York", 0.10);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Salespeople values(1005, "Fran", "London", 0.26);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Salespeople;
++------+---------+-----------+------+
+| SNUM | SNAME   | CITY      | COMM |
++------+---------+-----------+------+
+| 1001 | Peel    | London    | 0.12 |
+| 1002 | Serres  | San Jose  | 0.13 |
+| 1004 | Motika  | London    | 0.11 |
+| 1007 | Rifkin  | Barcelona | 0.15 |
+| 1003 | AxelRod | New York  |  0.1 |
+| 1005 | Fran    | London    | 0.26 |
++------+---------+-----------+------+
+6 rows in set (0.00 sec)
